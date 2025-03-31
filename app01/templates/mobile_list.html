@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="container">
+    <div style="margin-bottom:10px">
+        {#                                                                      在新页面打开#}
+        <a type="button" class="btn btn-success" href="/mobile/add" target="_blank">
+            <i class="fa fa-plus" aria-hidden="true"></i>添加号码
+        </a>
+        <div style="float:right;width:500px">
+            <form class="form-inline" method="GET">
+                <div class="form-group">
+                    <label for="inputPassword2" class="sr-only">Password</label>
+                    <input type="text" class="form-control" name="search" placeholder="搜索">
+                    <button type="submit" class="btn btn-default">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading"><i class="fa fa-list" aria-hidden="true"></i>靓号列表</div>
+            <div class="panel-body">
+                <div class="bs-example" data-example-id="striped-table">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>号码</th>
+                            <th>价格</th>
+                            <th>等级</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for item in queryset %}
+                            <tr>
+                                <td>{{ item.id }}</td>
+                                <th>{{ item.mobile }}</th>
+                                <th>{{ item.price }}</th>
+                                <th>{{ item.get_level_display }}</th>
+                                <th>{{ item.get_status_display }}</th>
+                                <th><a href="/mobile/{{ item.id }}/edit" class="btn-primary btn-sm">编辑</a>
+                                    <a href="/mobile/{{ item.id }}/delete" class="btn-danger btn-sm">删除</a></th>
+                            </tr>
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

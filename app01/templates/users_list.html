@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="container">
+        <div style="margin-bottom:10px">
+            {#                                                                      在新页面打开#}
+            <a type="button" class="btn btn-success" href="/users/add" target="_blank">
+                <i class="fa fa-plus" aria-hidden="true"></i>添加用户</a>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading"><i class="fa fa-list" aria-hidden="true"></i>用户列表</div>
+            <div class="panel-body">
+                <div class="bs-example" data-example-id="striped-table">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>姓名</th>
+                            <th>密码</th>
+                            <th>年龄</th>
+                            <th>余额</th>
+                            <th>入职时间</th>
+                            <th>性别</th>
+                            <th>所属部门</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {#                    展示数据库数据#}
+                        {% for obj in queryset %}
+                            <tr>
+                                <th>{{ obj.id }}</th>
+                                <td>{{ obj.name }}</td>
+                                <td>{{ obj.age }}</td>
+                                <td>{{ obj.password }}</td>
+                                <td>{{ obj.account }}</td>
+                                <td>{{ obj.create_time|date:"Y-m-d" }}</td>
+                                <td>{{ obj.get_gender_display }}</td>
+                                <td>{{ obj.department.title }}</td>
+                                <td>
+                                    <a class="btn btn-primary btn-xs" href="/users/{{ obj.id }}/edit/">编辑</a>
+                                    <a class="btn btn-danger btn-xs" href="/users/{{ obj.id }}/delete/">删除</a>
+                                </td>
+
+                            </tr>
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

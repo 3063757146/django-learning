@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<div class="container">
+    <div style="margin-bottom:10px">
+{#                                                                      在新页面打开#}
+        <a type="button" class="btn btn-success" href="/depart/add" target="_blank">
+        <i class="fa fa-plus" aria-hidden="true"></i>添加部门</a>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading"><i class="fa fa-list" aria-hidden="true"></i>部门列表</div>
+        <div class="panel-body">
+            <div class="bs-example" data-example-id="striped-table">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>部门名称</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+{#                    展示数据库数据#}
+                      {% for obj in queryset %}
+                    <tr>
+                        <th>{{ obj.id }}</th>
+                        <td>{{ obj.title }}</td>
+                        <td>
+                            <a class="btn btn-primary btn-xs" href="/depart/{{ obj.id }}/edit/">编辑</a>
+                            <a class="btn btn-danger btn-xs" href="/depart/delete/?nid={{ obj.id }}">删除</a>
+                        </td>
+                    </tr>
+
+                {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

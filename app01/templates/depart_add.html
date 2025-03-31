@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="container clearfix">
+        <form method = "post">
+{#            夹在form里面才能提交#}
+                {% csrf_token %}{#           必须要加  否则post报错 #}
+            <div class="form-group">
+                <label>部门名称</label>
+                <input type="text" class="form-control" placeholder="部门名称" name="title">
+            </div>
+            <button type="submit" class="btn btn-primary">提 交</button>
+        </form>
+    </div>
+{% endblock %}

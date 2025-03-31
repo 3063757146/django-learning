@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block content %}
+
+    <div class="container clearfix">
+{#    #novalidate取消浏览器校验#}
+        <form method="post" novalidate>
+            {#            夹在form里面才能提交#}
+            {% csrf_token %}{#           必须要加  否则post报错 #}
+<!---               lable是model类中写的verbose_name
+                前端显示 姓名:输入框
+                这样选择器 如性别自动生成      department外键在models中加__str__函数
+                否则form输出的是类信息  这样输出title信息-->
+             {% for field in form %}
+                  <div class="form-group">
+{#                  这样样式还加不到输入框中  必须在ModelForm类中新加#}
+                      <label>{{ field.label }}</label>
+                      {{ field }}
+{#                      fields.errors显示校验错误信息#}
+                    <span style="color:red">{{ field.errors }}</span>
+                  </div>
+                {% endfor %}
+            <button type="submit" class="btn btn-primary">提 交</button>
+        </form>
+    </div>
+{% endblock %}

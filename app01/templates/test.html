@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--引入bootstrap    -->
+    <link rel="stylesheet" href="../static/plugins/bootstrap-3.4.1/css/bootstrap.css">
+    <link rel="stylesheet" href="../static/plugins/font-awesome-4.7.0/css/font-awesome.css">
+    <style>
+        .menu{
+            width: 200px;
+            height: 800px;
+            border: 1px solid red;
+
+        }
+        .menu .item{
+            margin:10px;
+        }
+        .menu .header{
+            font-size: 15px;
+            background-color: #eea236;
+            cursor: pointer;
+        /*    鼠标放上变为小手*/
+        }
+        .content a{
+            display: block;
+            margin: 10px;
+            border-bottom: 1px dotted #2aabd2;
+        }
+        .content .hide{
+            /*隐藏用*/
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+<input type="text" id="username" placeholder="用户名"/>
+<input type="text" id="password" placeholder="密码">
+<button type="submit" onclick="addUser()">添加</button>
+<ul id="userlist">
+    <li>哈哈哈</li>
+</ul>
+
+    <!--引入jquary-->
+    <script src="../static/js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        function addUser(){
+            var username = $("#username").val();
+            var password = $("#password").val();
+
+            var str=username+"  ;  "+password;
+
+            //$("<li>")新建li标签
+            var newli=$("<li>").text(str);
+
+            $("#userlist").append(newli);
+        }
+
+        //新添加的删不掉
+        $ (function(){
+        $("li").click(function(){
+            //所有的li点击后出发此函数 this存着此li
+            $(this).remove()//直接删掉此标签
+        })
+            });
+
+    </script>
+
+</body>
+</html>
